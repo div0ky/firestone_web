@@ -12,7 +12,7 @@ from app.models import License, User
 @bp.route('/list')
 @login_required
 def list_active_bots():
-    _licenses = License.query.order_by(License.last_seen.desc()).all()
+    _licenses = License.query.order_by(License.last_seen.asc()).all()
     if _licenses is not None:
         bot = []
         for _license in _licenses:
