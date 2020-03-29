@@ -43,7 +43,7 @@ def valid_license_required(f):
                     db.session.add(new_license)
                     db.session.commit()
 
-                return f(*args, **kwargs)
+                return jsonify({'success': True, 'edition': _edition})
             else:
                 return jsonify({'success': False, 'message': 'Provided license key is invalid.'})
         else:
