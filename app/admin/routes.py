@@ -1,12 +1,17 @@
-from app import db
-from app.models import License
-from flask import make_response, json, render_template
-from app.admin import bp
+from app.models import License, User
 from datetime import datetime, timedelta
+
+from flask import render_template, redirect, url_for, flash
+from flask_login import current_user, login_user, login_required
+
+from app.admin import bp
+from app.admin.forms import LoginForm
+from app.models import License, User
 
 
 @bp.route('/list')
-def report_active_bots():
+@login_required
+def list_active_bots():
     _licenses = License.query.all()
     if _licenses is not None:
         bot = []

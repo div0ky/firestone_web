@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timedelta
-from app.models import License
+from app.models import License, User, Post
 from app import db
 
 import pytest
