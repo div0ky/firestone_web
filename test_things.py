@@ -18,6 +18,7 @@ class TestConfig(Config):
 class SharedVariables(object):
     def __init__(self):
         self.key = '64844D65-076B4102-BDA8EDA3-985FB1B2'
+        self.key2 = 'F6F8393A-FD564B35-A45EF7BA-752B77FC'
         self.email = 'wildfireajs@gmail.com'
         self.country = 'United States'
         self.order_number = '1234567890'
@@ -37,7 +38,7 @@ def app():
 @pytest.fixture
 def client():
     app = create_app()
-    app.config.from_object(TestConfig)
+    app.config.from_object(Config)
     with app.test_client() as client:
         with app.app_context():
             db.create_all()
@@ -48,17 +49,19 @@ def client():
 def test_testing_config(app):
     assert app.config['TESTING']
 
-def test_add_license(app):
-    new_license = License(license_key=shared.key, email=shared.email, order_number=shared.order_number, country=shared.country, last_seen=shared.last_seen)
+@pytest.mark.parametrize('key, expected', [(shared.key, None), (shared.key2, None)])
+def test_add_license(app, key, expected):
+    new_license = License(license_key=key, email=shared.email, order_number=shared.order_number, country=shared.country, last_seen=shared.last_seen)
     db.session.add(new_license)
     db.session.commit()
-    _license = License.query.filter_by(license_key=shared.key).first()
-    assert _license is not None
+    _license = License.query.filter_by(license_key=key).first()
+    assert _license is not expected
 
-def test_keep_alive(client):
-    resp = client.get(f'/alive?key={shared.key}')
+@pytest.mark.parametrize('key, expected', [(shared.key, ''), (shared.key2, '')])
+def test_keep_alive(client, key, expected):
+    resp = client.get(f'/alive?key={key}')
     assert b'has been updated' in resp.data
-    _license = License.query.filter_by(license_key=shared.key).first()
+    _license = License.query.filter_by(license_key=key).first()
     assert _license.last_seen + timedelta(minutes=1) >= datetime.utcnow()
 
 def test_map_nodes(client):

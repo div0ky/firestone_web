@@ -4,12 +4,16 @@ from logging.handlers import RotatingFileHandler
 
 from flask import Flask
 from flask_migrate import Migrate
+from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from flask_moment import Moment
 
 from config import Config
 
 db = SQLAlchemy()
 migrate = Migrate()
+bootstrap = Bootstrap()
+moment = Moment()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -17,6 +21,8 @@ def create_app(config_class=Config):
 
     db.init_app(app)
     migrate.init_app(app, db)
+    bootstrap.init_app(app)
+    moment.init_app(app)
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
@@ -29,6 +35,9 @@ def create_app(config_class=Config):
 
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
+
+    from app.admin import bp as admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/admin')
 
     if not app.debug:
         if not os.path.exists('logs'):
