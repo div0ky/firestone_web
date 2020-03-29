@@ -14,12 +14,12 @@
         </div>
     {% for active in alive %}
     <ul class="list-group">
-        <li class="list-group-item"><b>Status:</b>
+        <li class="list-group-item">
             {% if active.age == 'active' %}
-            <span class="label label-success">Online</span><span class="badge">{{ moment(active.last_seen).fromNow() }}</span>
+            <span class="label label-success">Online</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>
             {% endif %}
             {% if active.age == 'inactive' %}
-            <span class="label label-danger">Offline</span><span class="badge">{{ moment(active.last_seen).fromNow() }}</span>
+            <span class="label label-danger">Offline</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>
             {% endif %}
         </li>
         <li class="list-group-item"><b>License:</b> {{ active.license_key }}</li>
