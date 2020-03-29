@@ -16,27 +16,35 @@ A list of all bots that have been activated and come online.
 {% endblock %}
 
 {% block content %}
-    {% for active in alive %}
-    <ul class="list-group">
-        {% if active.age == 'active' %}
-        <li class="list-group-item list-group-item-success">
-            <span class="badge badge-success">Online</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>
-        </li>
-        {% endif %}
-        {% if active.age == 'inactive' %}
-        <li class="list-group-item list-group-item-danger">
-            <span class="badge badge-danger">Offline</span><br><span class="badge badge-secondary">{{ moment(active.last_seen).fromNow() }}</span>
-        </li>
-        {% endif %}
-        <li class="list-group-item"><b>License:</b> {{ active.license_key }}</li>
-        <li class="list-group-item"><b>Email:</b> {{ active.email }}</li>
-        <li class="list-group-item"><b>Order Number:</b> {{ active.order_number }}</li>
-        <li class="list-group-item"><b>Country:</b> {{ active.country }}</li>
-        <li class="list-group-item"><b>Current IP:</b> {{ active.current_ip }}</li>
-        <li class="list-group-item"><b>Used IPs:</b> {{ active.all_ips }}</li>
-        <!--        <li class="list-group-item"><b>Last Seen:</b> {{ moment(active.last_seen).fromNow() }}</li>-->
-    </ul>
-    <p></p>
-    {% endfor %}
+{% for active in alive %}
+{% if active.age == 'active' %}
+<ul class="list-group">
+    <li class="list-group-item list-group-item-success">
+        <span class="badge badge-success">Online</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>
+    </li>
+    <li class="list-group-item"><b>License:</b> {{ active.license_key }}</li>
+    <li class="list-group-item"><b>Email:</b> {{ active.email }}</li>
+    <li class="list-group-item"><b>Order Number:</b> {{ active.order_number }}</li>
+    <li class="list-group-item"><b>Country:</b> {{ active.country }}</li>
+    <li class="list-group-item"><b>Current IP:</b> {{ active.current_ip }}</li>
+    <li class="list-group-item"><b>Used IPs:</b> {{ active.all_ips }}</li>
+    <!--        <li class="list-group-item"><b>Last Seen:</b> {{ moment(active.last_seen).fromNow() }}</li>-->
+</ul>
+{% endif %}
+{% if active.age == 'inactive' %}
+<li class="list-group-item list-group-item-danger">
+    <span class="badge badge-danger">Offline</span><br><span class="badge badge-secondary">{{ moment(active.last_seen).fromNow() }}</span>
+</li>
+<li class="list-group-item"><b>License:</b> {{ active.license_key }}</li>
+<li class="list-group-item"><b>Email:</b> {{ active.email }}</li>
+<li class="list-group-item"><b>Order Number:</b> {{ active.order_number }}</li>
+<li class="list-group-item"><b>Country:</b> {{ active.country }}</li>
+<li class="list-group-item"><b>Current IP:</b> {{ active.current_ip }}</li>
+<li class="list-group-item"><b>Used IPs:</b> {{ active.all_ips }}</li>
+<!--        <li class="list-group-item"><b>Last Seen:</b> {{ moment(active.last_seen).fromNow() }}</li>-->
+</ul>
+{% endif %}
+<p></p>
+{% endfor %}
 
 {% endblock %}
