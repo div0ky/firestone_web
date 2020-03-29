@@ -18,11 +18,13 @@ def list_active_bots():
         for _license in _licenses:
             if _license.last_seen + timedelta(minutes=5) >= datetime.utcnow():
                 bot.append({'license_key': _license.license_key, 'email': _license.email, 'country': _license.country,
-                            'order_number': _license.order_number, 'last_seen': _license.last_seen, 'age': 'active'})
+                            'order_number': _license.order_number, 'last_seen': _license.last_seen,
+                            'current_ip': _license.current_ip, 'all_ips': _license.all_ips, 'age': 'active'})
             else:
                 bot.append({'license_key': _license.license_key, 'email': _license.email, 'country': _license.country,
                             'order_number': _license.order_number,
-                            'last_seen': _license.last_seen + timedelta(minutes=5), 'age': 'inactive'})
+                            'last_seen': _license.last_seen + timedelta(minutes=5), 'current_ip': _license.current_ip,
+                            'all_ips': _license.all_ips, 'age': 'inactive'})
         bot = sorted(bot, key = lambda i: i['age'], reverse=False)
 
     return render_template('list.html', alive=bot)

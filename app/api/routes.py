@@ -20,6 +20,20 @@ def keep_alive():
     _license_key = request.args.get('key')
     _license = License.query.filter_by(license_key=_license_key).first()
     if _license is not None:
+        if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+            ip_address = request.environ['REMOTE_ADDR']
+        else:
+            ip_address = request.environ['HTTP_X_FORWARDED_FOR']
+
+        if _license.all_ips:
+            all_ips = _license.all_ips.split(',')
+            if ip_address not in all_ips:
+                all_ips.append(ip_address)
+        else:
+            all_ips = ip_address
+
+        _license.current_ip = ip_address
+        _license.all_ips = all_ips
         _license.last_seen = datetime.utcnow()
         db.session.commit()
         return jsonify({'success': True, 'message': 'Last Alive has been updated.'})
