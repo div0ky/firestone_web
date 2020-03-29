@@ -23,5 +23,6 @@ def list_active_bots():
                 bot.append({'license_key': _license.license_key, 'email': _license.email, 'country': _license.country,
                             'order_number': _license.order_number,
                             'last_seen': _license.last_seen + timedelta(minutes=5), 'age': 'inactive'})
+        bot = sorted(bot, key = lambda i: i['age'], reverse=False)
 
     return render_template('list.html', alive=bot)
