@@ -33,7 +33,7 @@ def keep_alive():
             all_ips = ip_address
 
         _license.current_ip = ip_address
-        _license.all_ips = all_ips
+        _license.all_ips = (',').join(all_ips)
         _license.last_seen = datetime.utcnow()
         db.session.commit()
         return jsonify({'success': True, 'message': 'Last Alive has been updated.'})
