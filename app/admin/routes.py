@@ -26,6 +26,5 @@ def list_active_bots():
                             'order_number': _license.order_number,
                             'last_seen': _license.last_seen + timedelta(minutes=5), 'current_ip': _license.current_ip,
                             'all_ips': _license.all_ips, 'age': 'inactive'})
-            _list = inactive + active
 
-    return render_template('list.html', alive=_list)
+    return render_template('list.html', active=active, inactive=inactive)
