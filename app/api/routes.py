@@ -37,5 +37,5 @@ def keep_alive():
         _license.current_ip = ip_address
         _license.last_seen = datetime.utcnow()
         db.session.commit()
-        return jsonify({'success': True, 'message': 'Last Alive has been updated.'})
+        return jsonify({'success': True, 'message': 'Last Alive has been updated.', 'edition': _license.edition})
     return jsonify({'success': False, 'message': 'Could not update last alive.'}), 500
