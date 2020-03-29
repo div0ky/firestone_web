@@ -26,6 +26,7 @@ class User(UserMixin, db.Model):
 class License(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     license_key = db.Column(db.String(50), index=True, unique=True)
+    edition = db.Column(db.String(25))
     email = db.Column(db.String(120), unique=True)
     order_number = db.Column(db.String(25), unique=True)
     country = db.Column(db.String(25))
