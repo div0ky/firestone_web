@@ -14,16 +14,18 @@ from app.models import License, User
 def list_active_bots():
     _licenses = License.query.order_by(License.last_seen.asc()).all()
     if _licenses is not None:
-        bot = []
+        active = []
+        inactive = []
         for _license in _licenses:
             if _license.last_seen + timedelta(minutes=5) >= datetime.utcnow():
-                bot.append({'license_key': _license.license_key, 'email': _license.email, 'country': _license.country,
+                active.append({'license_key': _license.license_key, 'email': _license.email, 'country': _license.country,
                             'order_number': _license.order_number, 'last_seen': _license.last_seen,
                             'current_ip': _license.current_ip, 'all_ips': _license.all_ips, 'age': 'active'})
             else:
-                bot.append({'license_key': _license.license_key, 'email': _license.email, 'country': _license.country,
+                inactive.append({'license_key': _license.license_key, 'email': _license.email, 'country': _license.country,
                             'order_number': _license.order_number,
                             'last_seen': _license.last_seen + timedelta(minutes=5), 'current_ip': _license.current_ip,
                             'all_ips': _license.all_ips, 'age': 'inactive'})
+            _list = inactive + active
 
-    return render_template('list.html', alive=bot)
+    return render_template('list.html', alive=_list)
