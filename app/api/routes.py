@@ -32,6 +32,7 @@ def keep_alive():
             _license.all_ips = (',').join(all_ips)
         else:
             all_ips = ip_address
+            _license.all_ips = all_ips
 
         _license.current_ip = ip_address
         _license.last_seen = datetime.utcnow()
