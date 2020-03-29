@@ -19,4 +19,4 @@ def report_active_bots():
                             'order_number': _license.order_number,
                             'last_seen': _license.last_seen + timedelta(minutes=5), 'age': 'inactive'})
 
-    return render_template('current.html', alive=bot)
+    return render_template('list.html', alive=bot)
