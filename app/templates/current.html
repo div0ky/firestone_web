@@ -3,30 +3,40 @@
 {% block title %}Currently Active Firestone Idle Bots{% endblock %}
 
 {% block scripts %}
-    {{ super() }}
-    {{ moment.include_moment() }}
+{{ super() }}
+{{ moment.include_moment() }}
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="page-header">
-            <h1>Firestone Idle Bots<small><br>Activity Report</small></h1>
-        </div>
+<div class="container">
+    <h1 class="text-center">Registered Bots</h1><br>
+
     {% for active in alive %}
     <ul class="list-group">
-        <li class="list-group-item">
-            {% if active.age == 'active' %}
+        <!--        <li class="list-group-item">-->
+        <!--            {% if active.age == 'active' %}-->
+        <!--            <span class="label label-success">Online</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>-->
+        <!--            {% endif %}-->
+        <!--            {% if active.age == 'inactive' %}-->
+        <!--            <span class="label label-danger">Offline</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>-->
+        <!--            {% endif %}-->
+        <!--        </li>-->
+        {% if active.age == 'active' %}
+        <li class="list-group-item list-group-item-success">
             <span class="label label-success">Online</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>
-            {% endif %}
-            {% if active.age == 'inactive' %}
-            <span class="label label-danger">Offline</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>
-            {% endif %}
         </li>
+        {% endif %}
+        {% if active.age == 'inactive' %}
+        <li class="list-group-item list-group-item-danger">
+            <span class="label label-danger">Offline</span><br><span class="label label-default">{{ moment(active.last_seen).fromNow() }}</span>
+        </li>
+        {% endif %}
+
         <li class="list-group-item"><b>License:</b> {{ active.license_key }}</li>
         <li class="list-group-item"><b>Email:</b> {{ active.email }}</li>
         <li class="list-group-item"><b>Order Number:</b> {{ active.order_number }}</li>
         <li class="list-group-item"><b>Country:</b> {{ active.country }}</li>
-<!--        <li class="list-group-item"><b>Last Seen:</b> {{ moment(active.last_seen).fromNow() }}</li>-->
+        <!--        <li class="list-group-item"><b>Last Seen:</b> {{ moment(active.last_seen).fromNow() }}</li>-->
     </ul>
     {% endfor %}
 </div>
