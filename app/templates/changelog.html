@@ -19,7 +19,7 @@
 <p></p>
 <div class="card">
     <div class="card-header bg-success text-light">
-        <b>{{ post.change_type }}</b>
+        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
         <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
     </div>
     <div class="card-body">
@@ -42,7 +42,7 @@
 <p></p>
 <div class="card">
     <div class="card-header bg-warning text-dark">
-        <b>{{ post.change_type }}</b>
+        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
         <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
     </div>
     <div class="card-body">
@@ -65,7 +65,7 @@
 <p></p>
 <div class="card">
     <div class="card-header bg-dark text-light">
-        <b>{{ post.change_type }}</b>
+        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
         <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
     </div>
     <div class="card-body">
@@ -88,7 +88,7 @@
 <p></p>
 <div class="card">
     <div class="card-header bg-danger text-dark">
-        <b class="text-light">{{ post.change_type }}</b>
+        <b class="text-light">{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
         <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
     </div>
     <div class="card-body">
@@ -110,8 +110,8 @@
 {% if post.change_type == "Fixed" %}
 <p></p>
 <div class="card">
-    <div class="card-header bg-primary text-dark">
-        <b class="text-light">{{ post.change_type }}</b>
+    <div class="card-header bg-primary text-light">
+        <b class="text-light">{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
         <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
     </div>
     <div class="card-body">

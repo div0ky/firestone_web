@@ -34,7 +34,7 @@ def list_active_bots():
 def post_changelog():
     form = ChangelogForm()
     if form.validate_on_submit():
-        post = Post(subject=form.subject.data, summary=form.summary.data, change_type=form.change_type.data, author=current_user)
+        post = Post(subject=form.subject.data, summary=form.summary.data, change_type=form.change_type.data, author=current_user, version=form.version.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been published!')
@@ -59,11 +59,13 @@ def edit_post(post):
         existing_post.subject = form.subject.data
         existing_post.summary = form.summary.data
         existing_post.change_type = form.change_type.data
+        existing_post.version = form.version.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('main.changelog'))
     elif request.method == 'GET':
-        form.subject.data = existing_post.subject
+        form.subject = existing_post.subject
         form.summary = existing_post.summary
         form.change_type = existing_post.change_type
+        form.version = existing_post.version
     return render_template('/admin/changelog.html', form=form)
