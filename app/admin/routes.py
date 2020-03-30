@@ -1,12 +1,12 @@
-from app.models import License, User
 from datetime import datetime, timedelta
 
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from flask_login import current_user, login_user, login_required
 
 from app.admin import bp
-from app.admin.forms import LoginForm
-from app.models import License, User
+from app import db
+from app.admin.forms import LoginForm, ChangelogForm
+from app.models import License, User, Post
 
 
 @bp.route('/list')
@@ -28,3 +28,24 @@ def list_active_bots():
                             'all_ips': _license.all_ips, 'age': 'inactive'})
 
     return render_template('list.html', active=active, inactive=inactive)
+
+@bp.route('/changelog', methods=['GET', 'POST'])
+@login_required
+def post_changelog():
+    form = ChangelogForm()
+    if form.validate_on_submit():
+        post = Post(subject=form.subject.data, summary=form.summary.data, change_type=form.change_type.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been published!')
+        return redirect(url_for('main.changelog'))
+    return render_template('/admin/changelog.html', form=form)
+
+@bp.route('/delete/<post>', methods=['POST'])
+@login_required
+def delete_post(post):
+    post = Post.query.get(post)
+    db.session.delete(post)
+    db.session.commit()
+    flash('Deleted record!')
+    return redirect(url_for('main.changelog'))

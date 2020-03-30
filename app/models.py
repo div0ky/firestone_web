@@ -39,8 +39,9 @@ class License(db.Model):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(140))
-    body = db.Column(db.String(750))
+    subject = db.Column(db.String(140))
+    summary = db.Column(db.String(750))
+    change_type = db.Column(db.String(25))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

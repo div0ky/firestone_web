@@ -5,6 +5,8 @@ from app import db
 from app.models import User
 from datetime import datetime
 
+from app.models import Post
+
 # If the api's root address is accessed
 @bp.route('/')
 @bp.route('/index')
@@ -17,6 +19,13 @@ def profile(username):
     user = User.query.filter_by(username=username).first_or_404()
 
     return render_template('user.html', user=user, posts=[])
+
+@bp.route('/changelog')
+def changelog():
+    # posts = Post.query.order_by(Post.timestamp.desc()).all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(page, 5, False)
+    return render_template('changelog.html', posts=posts.items, pagination=posts)
 
 @bp.before_request
 def before_request():

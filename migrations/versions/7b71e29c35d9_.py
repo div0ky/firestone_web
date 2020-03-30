@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 37267d83230e
+Revision ID: 7b71e29c35d9
 Revises: 
-Create Date: 2020-03-29 06:34:55.050899
+Create Date: 2020-03-29 17:27:13.605472
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '37267d83230e'
+revision = '7b71e29c35d9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,7 @@ def upgrade():
     op.create_table('license',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('license_key', sa.String(length=50), nullable=True),
+    sa.Column('edition', sa.String(length=25), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=True),
     sa.Column('order_number', sa.String(length=25), nullable=True),
     sa.Column('country', sa.String(length=25), nullable=True),
@@ -38,14 +39,16 @@ def upgrade():
     sa.Column('email', sa.String(length=50), nullable=True),
     sa.Column('password_hash', sa.String(length=128), nullable=True),
     sa.Column('last_seen', sa.DateTime(), nullable=True),
+    sa.Column('about_me', sa.String(length=140), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)
     op.create_table('post',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(length=140), nullable=True),
-    sa.Column('body', sa.String(length=750), nullable=True),
+    sa.Column('subject', sa.String(length=140), nullable=True),
+    sa.Column('summary', sa.String(length=750), nullable=True),
+    sa.Column('change_type', sa.String(length=25), nullable=True),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),

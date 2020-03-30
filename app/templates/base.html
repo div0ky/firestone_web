@@ -18,7 +18,7 @@
 <div class="container">
     <h1 class="display-4">Firestone Idle Bot <small>Admin Panel</small></h1>
     {% block navigation %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <!--        <a class="navbar-brand" href="#">Firestone_Idle_Bot</a>-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,9 +28,9 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{{ url_for('main.index') }}">Home</a>
                 <a class="nav-item nav-link" href="{{ url_for('admin.list_active_bots') }}">Bot List</a>
-                <a class="nav-item nav-link" href="#">CHANGELOG</a>
-                <a class="nav-item nav-link" href="#">Docs</a>
-                <a class="nav-item nav-link" href="#">Support</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.changelog') }}">CHANGELOG</a>
+<!--                <a class="nav-item nav-link" href="#">Docs</a>-->
+<!--                <a class="nav-item nav-link" href="#">Support</a>-->
             </div>
         </div>
         {% if current_user.is_authenticated %}
@@ -40,8 +40,8 @@
                 }}</a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item"
-                   href="{{ url_for('main.profile', username=current_user.username) }}">Profile</a>
+                <a class="dropdown-item" href="{{ url_for('main.profile', username=current_user.username) }}">Profile</a>
+                <a class="dropdown-item" href="{{ url_for('admin.post_changelog') }}">Post a Change</a>
                 <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a>
             </div>
         </div>
