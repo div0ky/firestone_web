@@ -49,3 +49,21 @@ def delete_post(post):
     db.session.commit()
     flash('Deleted record!')
     return redirect(url_for('main.changelog'))
+
+@bp.route('/edit/<post>', methods=['GET', 'POST'])
+@login_required
+def edit_post(post):
+    existing_post = Post.query.get(post)
+    form = ChangelogForm(formdata=request.form, obj=existing_post)
+    if form.validate_on_submit():
+        existing_post.subject = form.subject.data
+        existing_post.summary = form.summary.data
+        existing_post.change_type = form.change_type.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('main.changelog'))
+    elif request.method == 'GET':
+        form.subject.data = existing_post.subject
+        form.summary = existing_post.summary
+        form.change_type = existing_post.change_type
+    return render_template('/admin/changelog.html', form=form)

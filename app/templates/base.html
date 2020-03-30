@@ -10,7 +10,6 @@
     <!-- Bootstrap CSS -->
     {{ bootstrap.load_css() }}
     {% endblock %}
-
     <title>Firestone Bot Admin</title>
     {% endblock %}
 </head>
@@ -29,8 +28,8 @@
                 <a class="nav-item nav-link" href="{{ url_for('main.index') }}">Home</a>
                 <a class="nav-item nav-link" href="{{ url_for('admin.list_active_bots') }}">Bot List</a>
                 <a class="nav-item nav-link" href="{{ url_for('main.changelog') }}">CHANGELOG</a>
-<!--                <a class="nav-item nav-link" href="#">Docs</a>-->
-<!--                <a class="nav-item nav-link" href="#">Support</a>-->
+                <!--                <a class="nav-item nav-link" href="#">Docs</a>-->
+                <!--                <a class="nav-item nav-link" href="#">Support</a>-->
             </div>
         </div>
         {% if current_user.is_authenticated %}
@@ -40,7 +39,8 @@
                 }}</a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{ url_for('main.profile', username=current_user.username) }}">Profile</a>
+                <a class="dropdown-item"
+                   href="{{ url_for('main.profile', username=current_user.username) }}">Profile</a>
                 <a class="dropdown-item" href="{{ url_for('admin.post_changelog') }}">Post a Change</a>
                 <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a>
             </div>
@@ -55,9 +55,13 @@
         <h1>{% block page_title %}{% endblock %}</h1>
         <p class="lead">{% block page_lead %}{% endblock %}</p>
     </div>
+    {% from 'bootstrap/utils.html' import render_messages %}
+    {{ render_messages() }}
+
     <!-- Your page content -->
     {% block content %}{% endblock %}
 </div>
+
 {% block scripts %}
 <!-- Optional JavaScript -->
 {{ bootstrap.load_js() }}
