@@ -12,7 +12,7 @@ from app.models import Post
 @bp.route('/index')
 def index():
     # return render_template('index.html', page_title="Welcome!", page_lead="You'll likely need to login for this site to be of any use to you.")
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('main.changelog'))
 
 @bp.route('/u/<username>')
 def profile(username):
