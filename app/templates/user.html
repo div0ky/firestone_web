@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+{% block page_title %}u/{{ user.username }}{% endblock %}
+{% block page_lead %}
+    <p>Last Seen: {{ moment(user.last_seen).format('LLL') }}</p>
+    {% if user.about_me %}
+    {{ user.about_me }}
+    {% else %}
+    You're viewing the profile for {{ user.username }}.
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+    <p>
+    {{ post.author.username }} says: <b>{{ post.body }}</b>
+    </p>
+    {% endfor %}
+{% endblock %}

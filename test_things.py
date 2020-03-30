@@ -1,12 +1,14 @@
 import os
 from datetime import datetime, timedelta
-from app.models import License
+from app.models import License, User, Post
 from app import db
 
 import pytest
 
 from app import create_app
 from config import Config
+
+import json
 
 
 class TestConfig(Config):
@@ -38,13 +40,13 @@ def app():
 @pytest.fixture
 def client():
     app = create_app()
-    app.config.from_object(Config)
+    app.config.from_object(TestConfig)
     with app.test_client() as client:
         with app.app_context():
             db.create_all()
         yield client
-        # db.session.remove()
-        # db.drop_all()
+        db.session.remove()
+        db.drop_all()
 
 def test_testing_config(app):
     assert app.config['TESTING']
@@ -71,3 +73,8 @@ def test_map_nodes(client):
 def test_invalid_license(client):
     resp = client.get(f'/alive?key=12341235132451235125')
     assert b'Provided license key is invalid' in resp.data
+
+def test_edition_return(client):
+    resp = client.get(f'/alive?key={shared.key}')
+    data = json.loads(resp.data)
+    assert data['edition'] is not None

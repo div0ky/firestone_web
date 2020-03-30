@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block page_title %}
+Login
+{% endblock %}
+
+{% block page_lead %}
+You'll need to login to access certain resources.
+{% endblock %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    {{ render_form(form) }}
+{% endblock %}

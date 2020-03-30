@@ -151,4 +151,4 @@ dmypy.json
 .idea/
 
 # sqlite databases
-*.db
+

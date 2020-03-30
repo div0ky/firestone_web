@@ -33,12 +33,13 @@ def valid_license_required(f):
             _refunded = bool(key_info['refunded'])
             _disputed = bool(key_info['disputed'])
             _chargedback = bool(key_info['chargebacked'])
+            _edition = str(key_info['variants'])
 
             if not _refunded and not _disputed and not _chargedback:
                 _license_found = License.query.filter_by(license_key=license_key).first()
 
                 if not _license_found:
-                    new_license = License(license_key=license_key, email=_email, country=_country, order_number=_order_number, last_seen=_last_seen)
+                    new_license = License(license_key=license_key, email=_email, country=_country, order_number=_order_number, last_seen=_last_seen, edition=_edition)
                     db.session.add(new_license)
                     db.session.commit()
 

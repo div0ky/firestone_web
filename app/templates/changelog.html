@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/pagination.html' import render_pagination %}
+
+{% block page_title %}CHANGELOG{% endblock %}
+{% block page_lead %} It's a log... of changes.{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+{% block content %}
+
+<!--<a href="{{ url_for('admin.post_changelog') }}" class="btn btn-primary">Post a Change</a>-->
+
+{% for post in posts %}
+
+{% if post.change_type == "Added" %}
+<p></p>
+<div class="card">
+    <div class="card-header bg-success text-light">
+        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+        <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.subject }}</h5>
+        <p class="card-text">{{ post.summary }}</p>
+        {% if current_user.is_authenticated %}
+        <form action="{{ url_for('admin.edit_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-left" type="submit" value="Edit">
+        </form>
+        <form action="{{ url_for('admin.delete_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-right" type="submit" value="Delete">
+        </form>
+        {% endif %}
+    </div>
+</div>
+<p></p>
+{% endif %}
+
+{% if post.change_type == "Changed" %}
+<p></p>
+<div class="card">
+    <div class="card-header bg-warning text-dark">
+        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+        <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.subject }}</h5>
+        <p class="card-text">{{ post.summary }}</p>
+        {% if current_user.is_authenticated %}
+        <form action="{{ url_for('admin.edit_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-left" type="submit" value="Edit">
+        </form>
+        <form action="{{ url_for('admin.delete_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-right" type="submit" value="Delete">
+        </form>
+        {% endif %}
+    </div>
+</div>
+<p></p>
+{% endif %}
+
+{% if post.change_type == "Deprecated" %}
+<p></p>
+<div class="card">
+    <div class="card-header bg-dark text-light">
+        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+        <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.subject }}</h5>
+        <p class="card-text">{{ post.summary }}</p>
+        {% if current_user.is_authenticated %}
+        <form action="{{ url_for('admin.edit_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-left" type="submit" value="Edit">
+        </form>
+        <form action="{{ url_for('admin.delete_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-right" type="submit" value="Delete">
+        </form>
+        {% endif %}
+    </div>
+</div>
+<p></p>
+{% endif %}
+
+{% if post.change_type == "Removed" %}
+<p></p>
+<div class="card">
+    <div class="card-header bg-danger text-dark">
+        <b class="text-light">{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+        <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.subject }}</h5>
+        <p class="card-text">{{ post.summary }}</p>
+        {% if current_user.is_authenticated %}
+        <form action="{{ url_for('admin.edit_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-left" type="submit" value="Edit">
+        </form>
+        <form action="{{ url_for('admin.delete_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-right" type="submit" value="Delete">
+        </form>
+        {% endif %}
+    </div>
+</div>
+<p></p>
+{% endif %}
+
+{% if post.change_type == "Fixed" %}
+<p></p>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <b class="text-light">{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+        <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.subject }}</h5>
+        <p class="card-text">{{ post.summary }}</p>
+        {% if current_user.is_authenticated %}
+        <form action="{{ url_for('admin.edit_post',  post=post.id) }}" , method="get">
+            <input class="btn btn-outline-secondary btn-sm float-left" type="submit" value="Edit">
+        </form>
+        <form action="{{ url_for('admin.delete_post',  post=post.id) }}" , method="post">
+            <input class="btn btn-outline-secondary btn-sm float-right" type="submit" value="Delete">
+        </form>
+        {% endif %}
+    </div>
+</div>
+<p></p>
+{% endif %}
+
+{% endfor %}
+{{ render_pagination(pagination) }}
+{% endblock %}

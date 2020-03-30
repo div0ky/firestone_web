@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form %}
+
+
+{% block page_title %}CHANGELOG<small>admin</small>{% endblock %}
+
+{% block page_lead %}
+Add Changelog Entries
+{% endblock %}
+
+{% block content %}
+{{ render_form(form) }}
+{% endblock %}
