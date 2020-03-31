@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% from 'bootstrap/pagination.html' import render_pagination %}
 
-{% block page_title %}CHANGELOG{% endblock %}
-{% block page_lead %} It's a log... of changes.{% endblock %}
+{% block page_title %}Keep a Changelog{% endblock %}
+{% block page_lead %} A curated, chronologically ordered list of notable changes for each version.{% endblock %}
 
 {% block scripts %}
 {{ super() }}
@@ -131,5 +131,5 @@
 {% endif %}
 
 {% endfor %}
-{{ render_pagination(pagination) }}
+{{ render_pagination(pagination, align='center') }}
 {% endblock %}

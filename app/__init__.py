@@ -8,6 +8,7 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
 from flask_login import LoginManager
+from flask_fontawesome import FontAwesome
 
 from config import Config
 
@@ -15,6 +16,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 bootstrap = Bootstrap()
 moment = Moment()
+font_awesome = FontAwesome()
 login = LoginManager()
 login.login_view = 'auth.login'
 
@@ -27,6 +29,7 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
     moment.init_app(app)
     login.init_app(app)
+    font_awesome.init_app(app)
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp)
