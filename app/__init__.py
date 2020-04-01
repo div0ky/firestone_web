@@ -18,7 +18,6 @@ migrate = Migrate()
 bootstrap = Bootstrap()
 moment = Moment()
 font_awesome = FontAwesome()
-markdown = Misaka()
 login = LoginManager()
 login.login_view = 'auth.login'
 
@@ -32,8 +31,6 @@ def create_app(config_class=Config):
     moment.init_app(app)
     login.init_app(app)
     font_awesome.init_app(app)
-    markdown.init_app(app)
-
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp)

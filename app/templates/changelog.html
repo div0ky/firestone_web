@@ -116,7 +116,7 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">{{ post.subject }}</h5>
-        <p class="card-text">{{ post.summary|markdown }}</p>
+        <p class="card-text">{{ post.summary }}</p>
         {% if current_user.is_authenticated %}
         <form action="{{ url_for('admin.edit_post',  post=post.id) }}" , method="get">
             <input class="btn btn-outline-secondary btn-sm float-left" type="submit" value="Edit">
