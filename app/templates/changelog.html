@@ -110,13 +110,13 @@
 {% if post.change_type == "Fixed" %}
 <p></p>
 <div class="card">
-    <div class="card-header bg-primary text-light">
+    <div class="card-header bg-info text-light">
         <b class="text-light">{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
         <span class="badge badge-light float-right">{{ moment(post.timestamp).fromNow() }}</span>
     </div>
     <div class="card-body">
         <h5 class="card-title">{{ post.subject }}</h5>
-        <p class="card-text">{{ post.summary }}</p>
+        <p class="card-text">{{ post.summary|markdown }}</p>
         {% if current_user.is_authenticated %}
         <form action="{{ url_for('admin.edit_post',  post=post.id) }}" , method="get">
             <input class="btn btn-outline-secondary btn-sm float-left" type="submit" value="Edit">
