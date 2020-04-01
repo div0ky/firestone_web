@@ -8,7 +8,6 @@ Flask_Moment==0.9.0
 Flask_SQLAlchemy==2.4.1
 alembic==1.4.2
 Flask_WTF==0.14.3
-Flask_Misaka==1.0.0
 pytest==5.4.1
 WTForms==2.2.1
 Werkzeug==1.0.0

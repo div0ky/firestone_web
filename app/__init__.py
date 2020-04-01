@@ -8,7 +8,6 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
 from flask_login import LoginManager
-from flask_misaka import Misaka
 from flask_fontawesome import FontAwesome
 
 from config import Config
