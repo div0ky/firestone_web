@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import current_user, login_user, login_required
+import markdown
+from markdown.extensions import admonition
 
 from app.admin import bp
 from app import db
@@ -34,7 +36,8 @@ def list_active_bots():
 def post_changelog():
     form = ChangelogForm()
     if form.validate_on_submit():
-        post = Post(subject=form.subject.data, summary=form.summary.data, change_type=form.change_type.data, author=current_user, version=form.version.data)
+        html = markdown.markdown(form.summary.data, extensions=['admonition'])
+        post = Post(subject=form.subject.data, summary=form.summary.data, change_type=form.change_type.data, author=current_user, version=form.version.data, markdown=html)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been published!')
@@ -56,6 +59,8 @@ def edit_post(post):
     existing_post = Post.query.get(post)
     form = ChangelogForm(formdata=request.form, obj=existing_post)
     if form.validate_on_submit():
+        html = markdown.markdown(form.summary.data, extensions=['admonition'])
+        existing_post.markdown = html
         existing_post.subject = form.subject.data
         existing_post.summary = form.summary.data
         existing_post.change_type = form.change_type.data
