@@ -41,6 +41,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(140))
     summary = db.Column(db.String(750))
+    markdown = db.Column(db.String())
     change_type = db.Column(db.String(25))
     version = db.Column(db.String(25))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

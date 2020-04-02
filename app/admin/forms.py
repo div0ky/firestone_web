@@ -14,6 +14,6 @@ class ChangelogForm(FlaskForm):
     # timestamp = DateTimeLocalField('TimeStamp', format='%Y-%m-%d %H:%M:%S')
     version = StringField('Version', validators=[DataRequired()])
     subject = StringField('Subject', validators=[DataRequired(), Length(min=1, max=140)])
-    summary = TextAreaField('Summary', validators=[DataRequired(), Length(min=1, max=750)])
+    summary = TextAreaField('Summary', render_kw={'rows': 8}, validators=[DataRequired(), Length(min=1, max=750)])
     change_type = SelectField('Type', choices=[('Added', 'Added'),('Changed', 'Changed'), ('Deprecated', 'Deprecated'), ('Removed', 'Removed'), ('Fixed', 'Fixed'), ('Security', 'Security')], validators=[DataRequired()])
     submit = SubmitField('Save')
