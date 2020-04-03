@@ -9,8 +9,9 @@
 
     {% block styles %}
     <!-- Bootstrap CSS -->
-    {{ bootstrap.load_css() }}
+<!--    {{ bootstrap.load_css() }}-->
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='scss/custom.css') }}">
     {% endblock %}
     <title>Firestone Idle Bot by div0ky</title>
     {% endblock %}

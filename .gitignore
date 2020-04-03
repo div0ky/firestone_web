@@ -152,3 +152,4 @@ dmypy.json
 
 # sqlite databases
 *.db
+.DS_Store
