@@ -11,7 +11,7 @@ from app.models import Post
 @bp.route('/')
 @bp.route('/index')
 def index():
-    latest_version = 'v0.8'
+    latest_version = 'v0.9'
     changes = Post.query.filter_by(version=latest_version).all()
     return render_template('index.html', changes=changes, version=latest_version)
 
@@ -51,7 +51,7 @@ def download():
     if not os.path.exists(upload_directory):
         os.makedirs(upload_directory)
     print(f'v{version}')
-    return send_from_directory(upload_directory, f'Firestone_Idle_Bot_v{version}.exe', as_attachment=True)
+    return send_from_directory(upload_directory, f'Firestone_Idle_Bot_{version}.exe', as_attachment=True)
 ########################################################################################
 
 @bp.before_request

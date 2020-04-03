@@ -1,49 +1,76 @@
 {% extends 'base.html' %}
-{% block page_title %}Firestone Idle Bot{% endblock %}
+{% block page_title %}Greetings.{% endblock %}
 {% block page_lead %}F.I.B. is a bot that plays Firestone Idle RPG for you while you're away.{% endblock %}
 
 {% block content %}
 
-<div class="card mb-4">
-    <h5 class="card-header">Latest Version</h5>
-    <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-title">Firestone Idle Bot <span class="badge badge-primary">v0.9</span></h5>
-            <a class="btn btn-sm btn-primary" href="{{ url_for('main.download') }}?ver=0.9"><i
-                    class="fas fa-arrow-circle-down"></i> Download</a>
-        </div>
+<p>
+    <img src="https://img.shields.io/badge/website-v0.7-blue">
+    <img src="https://img.shields.io/badge/Made%20with-Python-4B8BBE">
+    <img src="https://img.shields.io/badge/bot-{{ version }}-blue">
+    <img src="https://img.shields.io/badge/docs-v0.1-blue">
+    <img src="https://img.shields.io/badge/60%25%20of%20the%20time-works%20every%20time-green">
+</p>
 
-        {% for type, change in changes|groupby('change_type') %}
-        {% if type == "Added" %}
-        <small class="text-muted">{{ type }} <span class="badge badge-success">{{ change|count }}</span></small>
-        {% endif %}
-        {% if type == "Changed" %}
-        <small class="text-muted">{{ type }} <span class="badge badge-warning">{{ change|count }}</span></small>
-        {% endif %}
-        {% if type == "Fixed" %}
-        <small class="text-muted">{{ type }} <span class="badge badge-info">{{ change|count }}</span></small>
-        {% endif %}
-        {% if type == "Removed" %}
-      <small class="text-muted">{{ type }} <span class="badge badge-danger">{{ change|count }}</span></small>
-        {% endif %}
-        {% endfor %}
-      <p class="card-subtitle pt-4"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('main.version_changelog', version=version) }} ">View Changelog</a> </p>
+<div class="card my-4">
+    <div class="card-body">
+        Thanks for checking out Firestone Idle Bot. This site contains <a href="https://firestone.div0ky.com/docs">documentation</a> on how to install, setup, and use the bot. You can also find a curated, chronologically ordered list of notable changes for each version of the bot <i>aka</i> <a href="{{ url_for('main.changelog') }}">the Changelog</a>. Check below to <a href="{{ url_for('main.download', version=version) }}"> download the latest release</a>.
     </div>
 </div>
 
+<div class="card-deck">
+    <div class="card">
+        <h5 class="card-header">Latest Version <span class="badge badge-primary">{{ version }}</span></h5>
+        <div class="card-body">
+
+
+            <div class="btn-group btn-group-sm mt-2" role="group">
+                {% for type, change in changes|groupby('change_type') %}
+                {% if type == "Added" %}
+                <button type="button"  onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version ) }}';" class="btn btn-success">Added <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                </button>
+                {% endif %}
+                {% if type == "Changed" %}
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version ) }}';" class="btn btn-warning">Changed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                </button>
+                {% endif %}
+                {% if type == "Fixed" %}
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version ) }}';" class="btn btn-info">Fixed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                </button>
+                {% endif %}
+                {% if type == "Removed" %}
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version) }}';" class="btn btn-danger">Removed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                </button>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+
+            <p class="card-subtitle pt-4"><a class="btn btn-sm btn-outline-primary mr-2"
+                                             href="{{ url_for('main.version_changelog', version=version) }} "><i class="fas fa-book"></i> View
+                Changelog</a><a class="btn btn-sm btn-outline-primary"
+                                href="{{ url_for('main.download') }}?ver={{ version }}">
+                <i class="fas fa-arrow-circle-down"></i> Download</a>
+            </p>
+
+        </div>
+    </div>
+
+
+
 <!--########################################################################################-->
 
-<div class="card mt-4">
+<div class="card">
     <h5 class="card-header">Previous Versions</h5>
     <div class="card-body">
 
-        <a class="btn btn-primary" href="{{ url_for('main.download') }}?ver=0.8">
+        <a class="btn btn-outline-primary" href="{{ url_for('main.download') }}?ver=v0.8">
             <i class="fas fa-arrow-circle-down"></i> Firestone Idle Bot <span
-                class="badge badge-light badge-pill">v0.8</span>
+                class="badge badge-secondary badge-pill">v0.8</span>
         </a>
 
     </div>
 </div>
 
-
+</div>
 {% endblock %}
