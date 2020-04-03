@@ -11,8 +11,8 @@
 
 {% block content %}
 
-<!--<a href="{{ url_for('admin.post_changelog') }}" class="btn btn-primary">Post a Change</a>-->
-
+<i class="fas fa-filter"></i>
+<a href="{{ url_for('main.changelog') }}" class="btn  btn-sm btn-dark">{{ version }} | <i class="fas fa-times"></i></a>
 {% for post in posts %}
 
 {% if post.change_type == "Added" %}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{ fontawesome_html() }}
+
+    {% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    {% endblock %}
+    <title>400 - Bad Request</title>
+    {% endblock %}
+</head>
+<main>
+{% block content %}
+
+<div class="container" style="height: 800px;">
+  <div class="pt-lg-5 align-middle text-center">
+  <h1 class="display-4">400 - Bad Request</h1>
+  <p class="lead">Apologies, but whatever you're asking for isn't something we can give.</p>
+</div>
+</div>
+{% endblock %}
+</main>
+</html>
