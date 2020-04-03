@@ -9,14 +9,14 @@
     {% block styles %}
     <!-- Bootstrap CSS -->
 <!--    {{ bootstrap.load_css() }}-->
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/styles.css') }}">
+<!--    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/styles.css') }}">-->
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='scss/custom.css') }}">
 
     {% endblock %}
     <title>Firestone Idle Bot by div0ky</title>
     {% endblock %}
 </head>
-<body>
+<body class="mb-10">
 <div class="container-flui px-0">
     <!--    <h1 class="display-4">Firestone Idle Bot <small>Admin Panel</small></h1>-->
     {% block navigation %}
@@ -43,19 +43,19 @@
             {% if current_user.is_authenticated %}
             <div class="dropdown">
                 <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logged in as {{
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i> Logged in as {{
                     current_user.username
                     }}</a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url_for('main.profile', username=current_user.username) }}">Profile</a>
-                    <a class="dropdown-item" href="{{ url_for('admin.list_active_bots') }}">Bot List</a>
-                    <a class="dropdown-item" href="{{ url_for('admin.post_changelog') }}">Post a Change</a>
-                    <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a>
+                    <a class="dropdown-item" href="{{ url_for('main.profile', username=current_user.username) }}"><i class="fas fa-id-card"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ url_for('admin.list_active_bots') }}"><i class="fas fa-list"></i> Bot List</a>
+                    <a class="dropdown-item" href="{{ url_for('admin.post_changelog') }}"><i class="fas fa-edit"></i> Post a Change</a>
+                    <a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-door-open"></i> Logout</a>
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-outline-light" href="{{ url_for('auth.login') }}">Login</a>
+            <a class="btn btn-outline-light" href="{{ url_for('auth.login') }}"><i class="fas fa-user-plus"></i> Login</a>
             {% endif %}
         </div>
     </nav>
@@ -76,7 +76,9 @@
 </div>
     <footer class="footer mt-3">
         <div class="container text-center">
-        <span class="text-muted">Created with <i class="fa fa-heart"></i> by <img src="../static/img/div0ky_green_206x100.png" height="30"></span>
+
+            <span class="text-muted"> Made with <b>Python</b> and created with <i class="fa fa-heart"></i> by <img src="../static/img/div0ky_green_206x100.png" height="30">.</span>
+
             </div>
     </footer>
 

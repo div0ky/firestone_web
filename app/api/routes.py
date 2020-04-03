@@ -1,11 +1,13 @@
 from datetime import datetime
 
-from flask import request, jsonify
+from flask import request, jsonify, url_for
 
 from app import db
 from app.api import bp
 from app.auth.license import valid_license_required
 from app.models import License
+import json
+
 
 
 @bp.route('/map', methods=['GET'])
@@ -39,3 +41,15 @@ def keep_alive():
         db.session.commit()
         return jsonify({'success': True, 'message': 'Last Alive has been updated.', 'edition': _license.edition})
     return jsonify({'success': False, 'message': 'Could not update last alive.'}), 500
+
+@bp.route('/version/<item>')
+def versions(item):
+    try:
+        with open('app/static/versions.json', 'r') as file:
+            items = json.load(file)
+    except Exception as e:
+        return jsonify({'success': False, "message": e})
+    if item == "all":
+        return jsonify(items)
+    else:
+        return f"{items[item]}"

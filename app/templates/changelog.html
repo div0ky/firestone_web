@@ -18,8 +18,8 @@
 {% if post.change_type == "Added" %}
 <p></p>
 <div class="card">
-    <h5 class="card-header bg-success text-light">
-        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-end">{{ post.version }}</span>
+    <h5 class="card-header bg-success">
+        <b>{{ post.change_type }}</b> in <span class="badge badge-dark align-content-end">{{ post.version }}</span>
     </h5>
     <div class="card-body">
         <h5 class="card-title">{{ post.subject }}</h5>
@@ -42,8 +42,8 @@
 {% if post.change_type == "Changed" %}
 <p></p>
 <div class="card">
-    <h5 class="card-header bg-warning text-dark">
-        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+    <h5 class="card-header bg-warning">
+        <b>{{ post.change_type }}</b> in <span class="badge badge-dark align-content-lg-end">{{ post.version }}</span>
     </h5>
     <div class="card-body">
         <h5 class="card-title">{{ post.subject }}</h5>
@@ -66,8 +66,8 @@
 {% if post.change_type == "Deprecated" %}
 <p></p>
 <div class="card">
-    <h5 class="card-header bg-dark text-light">
-        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+    <h5 class="card-header bg-dark">
+        <b>{{ post.change_type }}</b> in <span class="badge badge-dark align-content-lg-end">{{ post.version }}</span>
     </h5>
     <div class="card-body">
         <h5 class="card-title">{{ post.subject }}</h5>
@@ -90,8 +90,8 @@
 {% if post.change_type == "Removed" %}
 <p></p>
 <div class="card">
-    <h5 class="card-header bg-danger text-dark">
-        <b class="text-light">{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+    <h5 class="card-header bg-danger">
+        <b class="text-light">{{ post.change_type }}</b> in <span class="badge badge-dark align-content-lg-end">{{ post.version }}</span>
     </h5>
     <div class="card-body">
         <h5 class="card-title">{{ post.subject }}</h5>
@@ -114,8 +114,8 @@
 {% if post.change_type == "Fixed" %}
 <p></p>
 <div class="card">
-    <h5 class="card-header bg-info text-light">
-        <b>{{ post.change_type }}</b> in <span class="badge badge-light align-content-lg-end">{{ post.version }}</span>
+    <h5 class="card-header bg-info">
+        <b>{{ post.change_type }}</b> in <span class="badge badge-dark align-content-lg-end">{{ post.version }}</span>
     </h5>
     <div class="card-body">
         <h5 class="card-title">{{ post.subject }}</h5>

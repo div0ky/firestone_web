@@ -5,23 +5,22 @@
 {% block content %}
 
 <p>
-    <img src="https://img.shields.io/static/v1?label=website&message=v0.7&color=437c90&style=flat-square">
-    <img src="https://img.shields.io/static/v1?label=Made%20with&message=Python&color=437c90&style=flat-square">
-    <img src="https://img.shields.io/static/v1?label=bot&message={{ version }}&color=437c90&style=flat-square">
-    <img src="https://img.shields.io/static/v1?label=docs&message=v0.1&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=website&message={{ web_latest }}&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=bot&message={{ bot_latest }}&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=docs&message={{ docs_latest }}&color=437c90&style=flat-square">
     <img src="https://img.shields.io/static/v1?label=kinda&message=sfw&color=437c90&style=flat-square">
     <img src="https://img.shields.io/static/v1?label=60%25%20of%20the%20time&message=works%20every%20time&color=72b238&style=flat-square">
 </p>
 
 <div class="card my-4">
     <div class="card-body">
-        Thanks for checking out Firestone Idle Bot. This site contains <a href="https://firestone.div0ky.com/docs">documentation</a> on how to install, setup, and use the bot. You can also find a curated, chronologically ordered list of notable changes for each version of the bot <i>aka</i> <a href="{{ url_for('main.changelog') }}">the Changelog</a>. Check below to <a href="{{ url_for('main.download', version=version) }}"> download the latest release</a>.
+        Thanks for checking out Firestone Idle Bot. This site contains <a href="https://firestone.div0ky.com/docs">documentation</a> on how to install, setup, and use the bot. You can also find a curated, chronologically ordered list of notable changes for each version of the bot <i>aka</i> <a href="{{ url_for('main.changelog') }}">the Changelog</a>. Check below to <a href="{{ url_for('main.download', ver=bot_latest) }}"> download the latest release</a>.
     </div>
 </div>
 
 <div class="card-deck">
     <div class="card">
-        <h5 class="card-header">Latest Version <span class="badge badge-secondary">{{ version }}</span></h5>
+        <h5 class="card-header">Latest Version <span class="badge badge-secondary">{{ bot_latest }}</span></h5>
         <div class="card-body">
 
 
@@ -50,7 +49,7 @@
             <p class="card-subtitle pt-4"><a class="btn btn-sm btn-primary mr-2"
                                              href="{{ url_for('main.version_changelog', version=version) }} "><i class="fas fa-book"></i> View
                 Changelog</a><a class="btn btn-sm btn-primary"
-                                href="{{ url_for('main.download') }}?ver={{ version }}">
+                                href="{{ url_for('main.download') }}?ver={{ bot_latest }}">
                 <i class="fas fa-arrow-circle-down"></i> Download</a>
             </p>
 
