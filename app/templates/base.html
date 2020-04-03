@@ -5,13 +5,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {{ fontawesome_html() }}
 
     {% block styles %}
     <!-- Bootstrap CSS -->
 <!--    {{ bootstrap.load_css() }}-->
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/styles.css') }}">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='scss/custom.css') }}">
+
     {% endblock %}
     <title>Firestone Idle Bot by div0ky</title>
     {% endblock %}
@@ -20,10 +20,10 @@
 <div class="container-flui px-0">
     <!--    <h1 class="display-4">Firestone Idle Bot <small>Admin Panel</small></h1>-->
     {% block navigation %}
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-robot"></i>
+                <i class="fas fa-dragon"></i>
                 <!--                    <img src="../static/img/robot-solid.svg" height="30" class="d-inline-block align-top" style="color: white;" alt="logo">-->
                 Firestone Idle Bot
             </a>
@@ -60,7 +60,7 @@
         </div>
     </nav>
     {% endblock %}
-    <div class="jumbotron jumbotron-fluid bg-primary text-light">
+    <div class="jumbotron jumbotron-fluid bg-dark text-light">
         <div class="container">
             <h1>{% block page_title %}{% endblock %}</h1>
             <p class="lead">{% block page_lead %}{% endblock %}</p>
@@ -82,6 +82,7 @@
 
 {% block scripts %}
 <!-- Optional JavaScript -->
+<script src="https://kit.fontawesome.com/b99513305a.js" crossorigin="anonymous"></script>
 {{ bootstrap.load_js() }}
 {% endblock %}
 </body>

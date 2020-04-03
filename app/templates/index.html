@@ -5,11 +5,12 @@
 {% block content %}
 
 <p>
-    <img src="https://img.shields.io/badge/website-v0.7-blue">
-    <img src="https://img.shields.io/badge/Made%20with-Python-4B8BBE">
-    <img src="https://img.shields.io/badge/bot-{{ version }}-blue">
-    <img src="https://img.shields.io/badge/docs-v0.1-blue">
-    <img src="https://img.shields.io/badge/60%25%20of%20the%20time-works%20every%20time-green">
+    <img src="https://img.shields.io/static/v1?label=website&message=v0.7&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=Made%20with&message=Python&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=bot&message={{ version }}&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=docs&message=v0.1&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=kinda&message=sfw&color=437c90&style=flat-square">
+    <img src="https://img.shields.io/static/v1?label=60%25%20of%20the%20time&message=works%20every%20time&color=72b238&style=flat-square">
 </p>
 
 <div class="card my-4">
@@ -20,7 +21,7 @@
 
 <div class="card-deck">
     <div class="card">
-        <h5 class="card-header">Latest Version <span class="badge badge-primary">{{ version }}</span></h5>
+        <h5 class="card-header">Latest Version <span class="badge badge-secondary">{{ version }}</span></h5>
         <div class="card-body">
 
 
@@ -46,9 +47,9 @@
             </div>
 
 
-            <p class="card-subtitle pt-4"><a class="btn btn-sm btn-outline-primary mr-2"
+            <p class="card-subtitle pt-4"><a class="btn btn-sm btn-primary mr-2"
                                              href="{{ url_for('main.version_changelog', version=version) }} "><i class="fas fa-book"></i> View
-                Changelog</a><a class="btn btn-sm btn-outline-primary"
+                Changelog</a><a class="btn btn-sm btn-primary"
                                 href="{{ url_for('main.download') }}?ver={{ version }}">
                 <i class="fas fa-arrow-circle-down"></i> Download</a>
             </p>
@@ -56,17 +57,15 @@
         </div>
     </div>
 
-
-
 <!--########################################################################################-->
 
 <div class="card">
     <h5 class="card-header">Previous Versions</h5>
     <div class="card-body">
 
-        <a class="btn btn-outline-primary" href="{{ url_for('main.download') }}?ver=v0.8">
+        <a class="btn btn-primary" href="{{ url_for('main.download') }}?ver=v0.8">
             <i class="fas fa-arrow-circle-down"></i> Firestone Idle Bot <span
-                class="badge badge-secondary badge-pill">v0.8</span>
+                class="badge badge-div-pineapple badge-pill">v0.8</span>
         </a>
 
     </div>

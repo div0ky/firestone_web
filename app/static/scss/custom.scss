@@ -1,10 +1,22 @@
 // my customs
 
 $theme-colors: (
-  "primary": #72b238,
-  "div_green": #72b238,
+        "primary": #72b238,
+        "secondary": #593f62,
+        "dark": #212121,
+
+        "div-raisin-black": #212121,
+        "div-green": #72b238,
+        "div-pineapple": #593f62,
+        "div-queen-blue": #437c90,
+        "div-alt-white": #f0f7f4,
+        "div-spanish-grey": #94958b,
 );
 
+$body-bg: #f0f7f4;
+$body-color: #212121;
+$card-bg: #fff;
+$link-color: #593f62;
 
 // import bootstrap
 @import "../bootstrap/scss/bootstrap";
