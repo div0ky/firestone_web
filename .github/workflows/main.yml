@@ -25,3 +25,5 @@ jobs:
     # Runs a single command using the runners shell
     - name: GitHub Action for pylint
       uses: cclauss/GitHub-Action-for-pylint@0.7.0
+      with:
+        args: pip install -r requirements.txt ; pylint **/*.py
