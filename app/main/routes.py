@@ -6,14 +6,19 @@ from app import db
 from app.models import User
 from datetime import datetime
 from app.models import Post
+import requests
 
 # If the api's root address is accessed
 @bp.route('/')
 @bp.route('/index')
 def index():
-    latest_version = 'v0.9'
-    changes = Post.query.filter_by(version=latest_version).all()
-    return render_template('index.html', changes=changes, version=latest_version)
+    response = requests.get('https://firestone.div0ky.com/version/all')
+    _versions = response.json()
+    bot_latest = _versions['bot']
+    web_latest = _versions['web']
+    docs_latest = _versions['docs']
+    changes = Post.query.filter_by(version=bot_latest).all()
+    return render_template('index.html', changes=changes, bot_latest=bot_latest, web_latest=web_latest, docs_latest=docs_latest)
 
 ########################################################################################
 
@@ -34,11 +39,11 @@ def changelog():
 
 ########################################################################################
 
-@bp.route('/changelog/<version>')
+@bp.route('/changelog/<string:version>')
 def version_changelog(version):
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.change_type.asc()).filter_by(version=version).paginate(page, 5, False)
-    return render_template('version_changelog.html', posts=posts.items, pagination=posts, version=version)
+    return render_template('version_changelog.html', posts=posts.items, pagination=posts, bot_latest=version)
 
 ########################################################################################
 

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% from 'bootstrap/pagination.html' import render_pagination %}
 
-{% block page_title %}Keep a Changelog{% endblock %}
-{% block page_lead %} A curated, chronologically ordered list of notable changes for each version.{% endblock %}
+{% block page_title %}Changelog for {{ bot_latest }}{% endblock %}
+{% block page_lead %} A curated, chronologically ordered list of notable changes for in {{ bot_latest }}.{% endblock %}
 
 {% block scripts %}
 {{ super() }}
@@ -11,8 +11,7 @@
 
 {% block content %}
 
-<i class="fas fa-filter"></i>
-<a href="{{ url_for('main.changelog') }}" class="btn  btn-sm btn-dark">{{ version }} | <i class="fas fa-times"></i></a>
+ <a href="{{ url_for('main.changelog') }}" class="btn  btn-sm btn-secondary"><i class="fas fa-filter"></i> Clear Filter | <i class="fas fa-times"></i></a>
 {% for post in posts %}
 
 {% if post.change_type == "Added" %}

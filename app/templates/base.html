@@ -5,61 +5,60 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {{ fontawesome_html() }}
 
     {% block styles %}
     <!-- Bootstrap CSS -->
-    {{ bootstrap.load_css() }}
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='styles/styles.css') }}">
+<!--    {{ bootstrap.load_css() }}-->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='scss/custom.css') }}">
+
     {% endblock %}
     <title>Firestone Idle Bot by div0ky</title>
     {% endblock %}
 </head>
-<body>
+<body class="mb-10">
 <div class="container-flui px-0">
     <!--    <h1 class="display-4">Firestone Idle Bot <small>Admin Panel</small></h1>-->
     {% block navigation %}
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-robot"></i>
-                <!--                    <img src="../static/img/robot-solid.svg" height="30" class="d-inline-block align-top" style="color: white;" alt="logo">-->
+                <i class="fas fa-dragon"></i>
                 Firestone Idle Bot
             </a>
-            <!--        <a class="navbar-brand" href="#">Firestone_Idle_Bot</a>-->
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{{ url_for('main.index') }}">Home</a>
-                    <a class="nav-item nav-link" href="{{ url_for('main.changelog') }}">Changelog</a>
-                    <a class="nav-item nav-link" href="https://firestone.div0ky.com/docs">Docs</a>
-                    <!--                <a class="nav-item nav-link" href="#">Support</a>-->
+                    <button class="btn btn-sm btn-outline-light mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.index' ) }}';">Home</button>
+            <button class="btn btn-sm btn-outline-light mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.changelog' ) }}';">Changelog</button>
+            <button class="btn btn-sm btn-outline-light mr-1" type="button" onclick="window.location.href='https://firestone.div0ky.com/docs';">Documentation</button>
+
                 </div>
             </div>
             {% if current_user.is_authenticated %}
             <div class="dropdown">
-                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logged in as {{
+                <a class="btn btn-sm btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i> Logged in as {{
                     current_user.username
                     }}</a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url_for('main.profile', username=current_user.username) }}">Profile</a>
-                    <a class="dropdown-item" href="{{ url_for('admin.list_active_bots') }}">Bot List</a>
-                    <a class="dropdown-item" href="{{ url_for('admin.post_changelog') }}">Post a Change</a>
-                    <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a>
+                    <a class="dropdown-item" href="{{ url_for('main.profile', username=current_user.username) }}"><i class="fas fa-id-card"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ url_for('admin.list_active_bots') }}"><i class="fas fa-list"></i> Bot List</a>
+                    <a class="dropdown-item" href="{{ url_for('admin.post_changelog') }}"><i class="fas fa-edit"></i> Post a Change</a>
+                    <a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-door-open"></i> Logout</a>
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-outline-light" href="{{ url_for('auth.login') }}">Login</a>
+            <a class="btn btn-sm btn-outline-light" href="{{ url_for('auth.login') }}"><i class="fas fa-user-plus"></i> Login</a>
             {% endif %}
         </div>
     </nav>
     {% endblock %}
-    <div class="jumbotron jumbotron-fluid bg-primary text-light">
+    <div class="jumbotron jumbotron-fluid bg-dark text-light">
         <div class="container">
             <h1>{% block page_title %}{% endblock %}</h1>
             <p class="lead">{% block page_lead %}{% endblock %}</p>
@@ -73,14 +72,17 @@
         {% block content %}{% endblock %}
     </div>
 </div>
-    <footer class="footer mt-3">
+    <footer class="footer d-flex flex-wrap">
         <div class="container text-center">
-        <span class="text-muted">Created with <i class="fa fa-heart"></i> by <img src="../static/img/div0ky_green_206x100.png" height="30"></span>
+            <img alt="Uptime Robot ratio (30 days)" src="https://img.shields.io/uptimerobot/ratio/m784670413-9088bc4c680a94028ef53d7d?style=flat-square&color=593f62"><br>
+            <span class="text-muted"> Made with <b>Python</b> and created with <i class="fa fa-heart"></i> by <a href="https://ajspurlock.com"><img src="../static/img/div0ky_green_206x100.png" height="30"></a>.</span>
+
             </div>
     </footer>
 
 {% block scripts %}
 <!-- Optional JavaScript -->
+<script src="https://kit.fontawesome.com/b99513305a.js" crossorigin="anonymous"></script>
 {{ bootstrap.load_js() }}
 {% endblock %}
 </body>

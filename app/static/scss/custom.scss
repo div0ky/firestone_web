@@ -1,0 +1,43 @@
+// my customs
+$theme-colors: (
+        "primary": #72b238,
+        "secondary": #593f62,
+        "dark": #212121,
+        "div-raisin-black": #212121,
+        "div-green": #72b238,
+        "div-pineapple": #593f62,
+        "div-queen-blue": #437c90,
+        "div-alt-white": #f0f7f4,
+        "div-spanish-grey": #94958b,
+
+        "success": #7fca8f,
+        "warning": #ffd14a,
+        "danger": #e56c77,
+        "info": #56bbcb,
+);
+
+.mb-10 {
+  margin-bottom: 150px !important;
+}
+
+$body-bg: #f0f7f4;
+$body-color: #212121;
+$card-bg: #fff;
+$link-color: #437c90;
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 125px; /* Set the fixed height of the footer here */
+  line-height: 2.25em;
+  align-items: center;
+  background-color: #212121;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+// import bootstrap
+@import "../bootstrap/scss/bootstrap";
