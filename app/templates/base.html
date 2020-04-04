@@ -23,20 +23,19 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-dragon"></i>
-                <!--                    <img src="../static/img/robot-solid.svg" height="30" class="d-inline-block align-top" style="color: white;" alt="logo">-->
                 Firestone Idle Bot
             </a>
-            <!--        <a class="navbar-brand" href="#">Firestone_Idle_Bot</a>-->
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{{ url_for('main.index') }}">Home</a>
-                    <a class="nav-item nav-link" href="{{ url_for('main.changelog') }}">Changelog</a>
-                    <a class="nav-item nav-link" href="https://firestone.div0ky.com/docs">Docs</a>
-                    <!--                <a class="nav-item nav-link" href="#">Support</a>-->
+                    <button class="btn btn-sm btn-outline-secondary mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.index' ) }}';">Home</button>
+            <button class="btn btn-sm btn-outline-secondary mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.changelog' ) }}';">Changelog</button>
+            <button class="btn btn-sm btn-outline-secondary mr-1" type="button" onclick="window.location.href='https://firestone.div0ky.com/docs';">Documentation</button>
+
                 </div>
             </div>
             {% if current_user.is_authenticated %}
