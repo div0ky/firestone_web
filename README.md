@@ -60,13 +60,11 @@ I don't personally use Docker (thought I'm considering it) so you'll need to set
 
 ## Versioning
 
-I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/div0ky/firestone_api/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Aaron J. Spurlock** - *Initial work* - [div0ky](https://github.com/div0ky)
 
 ## License
 
