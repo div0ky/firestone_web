@@ -59,8 +59,9 @@ def versions(item):
 
 ########################################################################################
 
-@bp.route('/badge/<type>')
-def badge(type):
+@bp.route('/badge')
+def badge():
+    type = request.args.get('type')
     try:
         with open('app/static/versions.json', 'r') as file:
             items = json.load(file)
@@ -81,4 +82,4 @@ def badge(type):
     elif type == 'docs':
         return jsonify({"schemaVersion": 1, "label": 'docs', 'message': docs_latest, 'color': color, 'style': style})
     else:
-        return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': color, 'style': style, 'isError': true})
+        return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': color, 'style': style, 'isError': True})
