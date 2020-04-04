@@ -87,7 +87,7 @@ def badge():
 
 ########################################################################################
 
-@bp.route('/badge/<user>')
+@bp.route('/profile-badge/<user>')
 def badge(user):
         _user = User.query.filter_by(username=user).first()
         if not _user:
