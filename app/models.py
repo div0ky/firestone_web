@@ -4,6 +4,7 @@ from flask_login import UserMixin
 
 from app import db, login
 
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, index=True)
@@ -37,6 +38,7 @@ class License(db.Model):
     def __repr__(self):
         return f"<LICENSE {self.license_key}>"
 
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(140))
@@ -50,9 +52,11 @@ class Post(db.Model):
     def __repr__(self):
         return f"<POST {self.title}>"
 
+
 class Stats(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     runtime = db.Column(db.Float())
+
 
 @login.user_loader
 def load_user(id):

@@ -3,8 +3,8 @@ from flask_login import login_required, current_user
 from app.main import bp
 import os
 from app import db
-from app.models import User
-from datetime import datetime
+from app.models import User, License
+from datetime import datetime, timedelta
 from app.models import Post
 import requests
 
@@ -14,17 +14,34 @@ import requests
 def index():
     response = requests.get('https://firestone.div0ky.com/version/all')
     # response = requests.get('http://localhost:5000/version/all')
+    start_date = datetime(2020, 2, 8, 7, 13, 43)
+    right_now = datetime.utcnow()
+    run_time = right_now - start_date
+    days = run_time.days
+    seconds = run_time.seconds
+    hours = seconds//3600
+    minutes = (seconds//60)%60
+    display_time = f"{days} days, {hours} hours, {minutes} minutes"
     _versions = response.json()
     bot_latest = _versions['bot']
     web_latest = _versions['web']
     docs_latest = _versions['docs']
+
+    _licenses = License.query.order_by(License.last_seen.asc()).all()
+    if _licenses is not None:
+        active = []
+        for _license in _licenses:
+            if _license.last_seen + timedelta(minutes=5) >= datetime.utcnow():
+                active.append(_license)
+
+    active = len(active)
     changes = Post.query.filter_by(version=bot_latest).all()
     added = [x for x in changes if x.change_type == "Added"]
     changed = [x for x in changes if x.change_type == "Changed"]
     fixed = [x for x in changes if x.change_type == "Fixed"]
     removed = [x for x in changes if x.change_type == "Removed"]
     return render_template('index.html', changes=changes, bot_latest=bot_latest, web_latest=web_latest,
-                           docs_latest=docs_latest, added=added, changed=changed, fixed=fixed, removed=removed)
+                           docs_latest=docs_latest, added=added, changed=changed, fixed=fixed, removed=removed, display_time=display_time, active=active)
 
 ########################################################################################
 
