@@ -2,11 +2,12 @@ import json
 from datetime import datetime
 
 from flask import request, jsonify
+from flask_login import login_required, current_user
 
 from app import db
 from app.api import bp
 from app.auth.license import valid_license_required
-from app.models import License
+from app.models import License, User
 
 
 @bp.route('/map', methods=['GET'])
@@ -83,3 +84,18 @@ def badge():
         return jsonify({"schemaVersion": 1, "label": 'docs', 'message': docs_latest, 'color': color, 'style': style})
     else:
         return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': 'dc3545', 'style': style, 'isError': True})
+
+########################################################################################
+
+@bp.route('/badge/<user>')
+@login_required
+def badge(user):
+        _user = User.query.filter_by(username=user).first()
+        if not _user:
+            return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': 'dc3545', 'style': style, 'isError': True})
+
+        color = '437c90'
+        style = 'flat-square'
+        edition = _user.edition
+
+        return jsonify({"schemaVersion": 1, "label": 'Firestone Idle Bot', 'message': edition, 'color': color, 'style': style})
