@@ -12,37 +12,32 @@
     <img src="https://img.shields.io/static/v1?label=60%25%20of%20the%20time&message=works%20every%20time&color=72b238&style=flat-square">
 </p>
 
+
 <div class="card my-4">
     <div class="card-body">
         Thanks for checking out Firestone Idle Bot. This site contains <a href="https://firestone.div0ky.com/docs">documentation</a> on how to install, setup, and use the bot. You can also find a curated, chronologically ordered list of notable changes for each version of the bot <i>aka</i> <a href="{{ url_for('main.changelog') }}">the Changelog</a>. Check below to <a href="{{ url_for('main.download', ver=bot_latest) }}"> download the latest release</a>.
     </div>
 </div>
 
-<div class="card-deck">
+<div class="card-deck ">
     <div class="card">
         <h5 class="card-header">Latest Version <span class="badge badge-secondary">{{ bot_latest }}</span></h5>
         <div class="card-body">
 
-
             <div class="btn-group btn-group-sm mt-2" role="group">
-                {% for type, change in changes|groupby('change_type') %}
-                {% if type == "Added" %}
-                <button type="button"  onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-success">Added <span class="badge badge-light badge-pill">{{ change|count }}</span>
+
+                <button type="button"  onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-success">Added <span class="badge badge-light badge-pill">{{ added|count }}</span>
                 </button>
-                {% endif %}
-                {% if type == "Changed" %}
-                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-warning">Changed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-warning">Changed <span class="badge badge-light badge-pill">{{ changed|count }}</span>
                 </button>
-                {% endif %}
-                {% if type == "Fixed" %}
-                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-info">Fixed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-info">Fixed <span class="badge badge-light badge-pill">{{ fixed|count }}</span>
                 </button>
-                {% endif %}
-                {% if type == "Removed" %}
-                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest) }}';" class="btn btn-danger">Removed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest) }}';" class="btn btn-danger">Removed <span class="badge badge-light badge-pill">{{ removed|count }}</span>
                 </button>
-                {% endif %}
-                {% endfor %}
+
             </div>
 
 
@@ -58,14 +53,12 @@
 
 <!--########################################################################################-->
 
-<div class="card">
-    <h5 class="card-header">Previous Versions</h5>
+<div class="card d-flex align-middle">
+    <h5 class="card-header">Does Holyday Games allow bots?</h5>
     <div class="card-body">
+        <p><a href="https://holydaygames.com">Holyday Games</a> recently changed their <a href="https://holydaygames.com/docs/firestone/fs-terms-of-services.pdf"><i>Terms of Use</i></a>. Currently, Firestone Idle Bot <i>breaks</i> their terms of use, but it's <b>virtually undetectable</b>.
 
-        <a class="btn btn-primary" href="{{ url_for('main.download') }}?ver=v0.8">
-            <i class="fas fa-arrow-circle-down"></i> Firestone Idle Bot <span
-                class="badge badge-div-pineapple badge-pill">v0.8</span>
-        </a>
+        <p class="small">Last Updated: 20-04-03 [23:06:17]</p>
 
     </div>
 </div>

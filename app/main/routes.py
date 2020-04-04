@@ -12,13 +12,19 @@ import requests
 @bp.route('/')
 @bp.route('/index')
 def index():
-    response = requests.get('https://firestone.div0ky.com/version/all')
+    # response = requests.get('https://firestone.div0ky.com/version/all')
+    response = requests.get('http://localhost:5000/version/all')
     _versions = response.json()
     bot_latest = _versions['bot']
     web_latest = _versions['web']
     docs_latest = _versions['docs']
     changes = Post.query.filter_by(version=bot_latest).all()
-    return render_template('index.html', changes=changes, bot_latest=bot_latest, web_latest=web_latest, docs_latest=docs_latest)
+    added = [x for x in changes if x.change_type == "Added"]
+    changed = [x for x in changes if x.change_type == "Changed"]
+    fixed = [x for x in changes if x.change_type == "Fixed"]
+    removed = [x for x in changes if x.change_type == "Removed"]
+    return render_template('index.html', changes=changes, bot_latest=bot_latest, web_latest=web_latest,
+                           docs_latest=docs_latest, added=added, changed=changed, fixed=fixed, removed=removed)
 
 ########################################################################################
 

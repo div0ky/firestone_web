@@ -50,6 +50,10 @@ class Post(db.Model):
     def __repr__(self):
         return f"<POST {self.title}>"
 
+class Stats(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    runtime = db.Column(db.Float())
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
