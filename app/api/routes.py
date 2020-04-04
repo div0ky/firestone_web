@@ -82,4 +82,4 @@ def badge():
     elif type == 'docs':
         return jsonify({"schemaVersion": 1, "label": 'docs', 'message': docs_latest, 'color': color, 'style': style})
     else:
-        return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': color, 'style': style, 'isError': True})
+        return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': 'dc3545', 'style': style, 'isError': True})
