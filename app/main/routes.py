@@ -12,8 +12,8 @@ import requests
 @bp.route('/')
 @bp.route('/index')
 def index():
-    # response = requests.get('https://firestone.div0ky.com/version/all')
-    response = requests.get('http://localhost:5000/version/all')
+    response = requests.get('https://firestone.div0ky.com/version/all')
+    # response = requests.get('http://localhost:5000/version/all')
     _versions = response.json()
     bot_latest = _versions['bot']
     web_latest = _versions['web']
