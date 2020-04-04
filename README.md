@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/div0ky/firestone_api.svg?branch=master)](https://travis-ci.com/div0ky/firestone_api)
+[![Build Status](https://travis-ci.com/div0ky/firestone_api.svg?branch=stable)](https://travis-ci.com/div0ky/firestone_api)
 
 # Firestone Idle Bot - Website
 
