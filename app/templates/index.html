@@ -27,19 +27,19 @@
             <div class="btn-group btn-group-sm mt-2" role="group">
                 {% for type, change in changes|groupby('change_type') %}
                 {% if type == "Added" %}
-                <button type="button"  onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version ) }}';" class="btn btn-success">Added <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                <button type="button"  onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-success">Added <span class="badge badge-light badge-pill">{{ change|count }}</span>
                 </button>
                 {% endif %}
                 {% if type == "Changed" %}
-                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version ) }}';" class="btn btn-warning">Changed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-warning">Changed <span class="badge badge-light badge-pill">{{ change|count }}</span>
                 </button>
                 {% endif %}
                 {% if type == "Fixed" %}
-                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version ) }}';" class="btn btn-info">Fixed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest ) }}';" class="btn btn-info">Fixed <span class="badge badge-light badge-pill">{{ change|count }}</span>
                 </button>
                 {% endif %}
                 {% if type == "Removed" %}
-                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=version) }}';" class="btn btn-danger">Removed <span class="badge badge-light badge-pill">{{ change|count }}</span>
+                <button type="button" onclick="window.location.href='{{ url_for( 'main.version_changelog', version=bot_latest) }}';" class="btn btn-danger">Removed <span class="badge badge-light badge-pill">{{ change|count }}</span>
                 </button>
                 {% endif %}
                 {% endfor %}
