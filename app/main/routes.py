@@ -39,7 +39,7 @@ def changelog():
 
 ########################################################################################
 
-@bp.route('/changelog/<version>')
+@bp.route('/changelog/<string:version>')
 def version_changelog(version):
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.change_type.asc()).filter_by(version=version).paginate(page, 5, False)
