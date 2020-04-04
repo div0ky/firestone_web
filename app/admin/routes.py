@@ -31,6 +31,8 @@ def list_active_bots():
 
     return render_template('list.html', active=active, inactive=inactive)
 
+########################################################################################
+
 @bp.route('/changelog', methods=['GET', 'POST'])
 @login_required
 def post_changelog():
@@ -44,6 +46,8 @@ def post_changelog():
         return redirect(url_for('main.changelog'))
     return render_template('/admin/changelog.html', form=form)
 
+########################################################################################
+
 @bp.route('/delete/<post>', methods=['POST'])
 @login_required
 def delete_post(post):
@@ -52,6 +56,8 @@ def delete_post(post):
     db.session.commit()
     flash('Deleted record!')
     return redirect(url_for('main.changelog'))
+
+########################################################################################
 
 @bp.route('/edit/<post>', methods=['GET', 'POST'])
 @login_required
