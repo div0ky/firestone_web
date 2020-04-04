@@ -87,14 +87,14 @@ def badge():
 
 ########################################################################################
 
-@bp.route('/badge/<user>')
+@bp.route('/badge/<string:user>')
 def user_badge(user):
-        _user = User.query.filter_by(username=user).first()
-        if not _user:
-            return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': 'dc3545', 'style': style, 'isError': True})
+    _user = User.query.filter_by(username=user).first()
+    if not _user:
+        return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': 'dc3545', 'style': style, 'isError': True})
 
-        color = '437c90'
-        style = 'flat-square'
-        edition = _user.edition
+    color = '437c90'
+    style = 'flat-square'
+    edition = _user.edition
 
-        return jsonify({"schemaVersion": 1, "label": 'Firestone Idle Bot', 'message': edition, 'color': color, 'style': style})
+    return jsonify({"schemaVersion": 1, "label": 'Firestone Idle Bot', 'message': edition, 'color': color, 'style': style})

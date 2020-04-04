@@ -32,15 +32,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <button class="btn btn-sm btn-outline-secondary mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.index' ) }}';">Home</button>
-            <button class="btn btn-sm btn-outline-secondary mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.changelog' ) }}';">Changelog</button>
-            <button class="btn btn-sm btn-outline-secondary mr-1" type="button" onclick="window.location.href='https://firestone.div0ky.com/docs';">Documentation</button>
+                    <button class="btn btn-sm btn-outline-light mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.index' ) }}';">Home</button>
+            <button class="btn btn-sm btn-outline-light mr-1" type="button" onclick="window.location.href='{{ url_for( 'main.changelog' ) }}';">Changelog</button>
+            <button class="btn btn-sm btn-outline-light mr-1" type="button" onclick="window.location.href='https://firestone.div0ky.com/docs';">Documentation</button>
 
                 </div>
             </div>
             {% if current_user.is_authenticated %}
             <div class="dropdown">
-                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                <a class="btn btn-sm btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i> Logged in as {{
                     current_user.username
                     }}</a>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             {% else %}
-            <a class="btn btn-outline-light" href="{{ url_for('auth.login') }}"><i class="fas fa-user-plus"></i> Login</a>
+            <a class="btn btn-sm btn-outline-light" href="{{ url_for('auth.login') }}"><i class="fas fa-user-plus"></i> Login</a>
             {% endif %}
         </div>
     </nav>
