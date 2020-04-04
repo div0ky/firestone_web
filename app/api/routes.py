@@ -87,8 +87,8 @@ def badge():
 
 ########################################################################################
 
-@bp.route('/profile-badge/<user>')
-def badge(user):
+@bp.route('/badge/<user>')
+def user_badge(user):
         _user = User.query.filter_by(username=user).first()
         if not _user:
             return jsonify({"schemaVersion": 1, "label": 'error', 'message': 'invalid', 'color': 'dc3545', 'style': style, 'isError': True})
